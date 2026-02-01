@@ -3,38 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Egor (Xorame) - Twitch Модератор & Инженер</title>
+    <title>xorame - Главный модератор Egor4kill</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+    <!-- Гирлянда -->
+    <div class="garland">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+
     <div class="container">
         <!-- Навигация -->
         <nav class="navbar">
-            <div class="logo">Xorame</div>
+            <div class="logo">xorame</div>
             <ul class="nav-links">
                 <li><a href="#about">Обо мне</a></li>
                 <li><a href="#moderation">Модерация</a></li>
-                <li><a href="#skills">Навыки</a></li>
-                <li><a href="#projects">Проекты</a></li>
-                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+                <li><a href="#idea" class="idea-nav">Предложить идею</a></li>
             </ul>
         </nav>
 
         <!-- Герой-секция -->
         <header class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Системная <span class="highlight">модерация</span> Twitch</h1>
-                <p class="hero-subtitle">Инженерный подход к управлению сообществами и автоматизации</p>
-                <div class="hero-badges">
-                    <span class="badge"><i class="fab fa-twitch"></i> Twitch Support</span>
-                    <span class="badge"><i class="fas fa-code"></i> Low-Level Dev</span>
-                    <span class="badge"><i class="fas fa-microchip"></i> DIY Engineer</span>
+                <h1 class="hero-title">Главный модератор <span class="highlight">Egor4kill</span></h1>
+                <p class="hero-subtitle">Слежу за порядком в чате, помогаю развивать канал и слушаю ваши идеи</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1+</div>
+                        <div class="stat-label">год опыта</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">часов модерации</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">на связи</div>
+                    </div>
                 </div>
-                <a href="#contact" class="cta-button">Связаться для сотрудничества</a>
+
+                <div class="hero-buttons">
+                    <a href="https://twitch.tv/egor4kill" class="cta-button twitch-btn">
+                        <i class="fab fa-twitch"></i> Канал Egor4kill
+                    </a>
+                    <a href="#idea" class="cta-button idea-btn">
+                        <i class="fas fa-lightbulb"></i> Предложить идею
+                    </a>
+                </div>
             </div>
+            
             <div class="hero-image">
                 <div class="terminal-window">
                     <div class="terminal-header">
@@ -43,13 +75,20 @@
                             <span class="minimize"></span>
                             <span class="maximize"></span>
                         </div>
-                        <span class="terminal-title">moderator@twitch:~</span>
+                        <span class="terminal-title">moderator@egor4kill:~</span>
                     </div>
                     <div class="terminal-body">
                         <p><span class="prompt">$</span> whoami</p>
-                        <p class="output">Egor "Xorame" — системный модератор</p>
-                        <p><span class="prompt">$</span> cat specialization.txt</p>
-                        <p class="output">Техническая модерация • Автоматизация • Безопасность</p>
+                        <p class="output">xorame — главный модератор Egor4kill</p>
+                        <p><span class="prompt">$</span> cat role.txt</p>
+                        <p class="output">Должность: Редактор (Editor)</p>
+                        <p class="output">Уровень доступа: Выше модератора</p>
+                        <p><span class="prompt">$</span> cat experience.txt</p>
+                        <p class="output">Опыт: 1+ год модерации</p>
+                        <p class="output">Часы: 500+ в чате Twitch</p>
+                        <p><span class="prompt">$</span> cat contacts.txt</p>
+                        <p class="output">Telegram: @xoramegods</p>
+                        <p class="output">Почта: xorame.x.x@gmail.com</p>
                         <p><span class="prompt">$</span> <span class="cursor">█</span></p>
                     </div>
                 </div>
@@ -58,23 +97,28 @@
 
         <!-- Обо мне -->
         <section id="about" class="section">
-            <h2 class="section-title"><i class="fas fa-user"></i> Обо мне</h2>
+            <h2 class="section-title"><i class="fas fa-user"></i> Кто я</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Я подхожу к модерации как к инженерной задаче: системно, с фокусом на профилактику, автоматизацию и глубокий анализ данных. Моя цель — превратить хаотичный поток чата в безопасную, управляемую среду.</p>
-                    <p>Помимо цифрового пространства, я проектирую и создаю электронные системы с нуля — от прототипирования до готовых устройств. Этот технический бэкграунд позволяет мне решать задачи модерации на более глубоком уровне.</p>
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">5+</div>
-                            <div class="stat-label">лет в модерации</div>
+                    <p>Привет! Меня зовут <strong>xorame</strong> (Дмитрий). Я — главный модератор и редактор на канале <a href="https://twitch.tv/egor4kill" class="inline-link">Egor4kill</a>. Моя задача — следить за порядком в чате, помогать зрителям и создавать комфортную атмосферу на стримах.</p>
+                    
+                    <p>Также я администрирую Discord-сервер сообщества и помогаю с организацией стримов. Если у вас есть идеи для контента, предложения по сотрудничеству или вопросы по каналу — вы по адресу.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-crown"></i>
+                            <h3>Редактор на Twitch</h3>
+                            <p>Роль выше обычного модератора с расширенными правами</p>
                         </div>
-                        <div class="stat">
-                            <div class="stat-number">1000+</div>
-                            <div class="stat-label">часов на стримах</div>
+                        <div class="feature">
+                            <i class="fas fa-hands-helping"></i>
+                            <h3>Помощь зрителям</h3>
+                            <p>Отвечаю на вопросы и помогаю разобраться в проблемах</p>
                         </div>
-                        <div class="stat">
-                            <div class="stat-number">∞</div>
-                            <div class="stat-label">автоматизированных процессов</div>
+                        <div class="feature">
+                            <i class="fas fa-robot"></i>
+                            <h3>Настройка Nightbot</h3>
+                            <p>Знаю Nightbot вдоль и поперёк, могу помочь с настройкой</p>
                         </div>
                     </div>
                 </div>
@@ -83,198 +127,165 @@
 
         <!-- Модерация -->
         <section id="moderation" class="section dark">
-            <h2 class="section-title"><i class="fas fa-shield-alt"></i> Twitch Модерация</h2>
-            <div class="services">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Техническая модерация</h3>
+            <h2 class="section-title"><i class="fas fa-shield-alt"></i> Что я делаю на канале</h2>
+            <div class="moderation-grid">
+                <div class="mod-card">
+                    <div class="mod-icon"><i class="fas fa-comment-slash"></i></div>
+                    <h3>Модерация чата</h3>
                     <ul>
-                        <li>Настройка ботов (Nightbot, StreamElements)</li>
-                        <li>Кастомные скрипты и фильтры</li>
-                        <li>Интеграция Twitch API</li>
-                        <li>Системы автоматических ответов</li>
+                        <li>Слежу за соблюдением правил</li>
+                        <li>Останавливаю конфликты и споры</li>
+                        <li>Борюсь со спамом и флудом</li>
+                        <li>Защищаю от рейдов и нарушителей</li>
                     </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Аналитика и стратегия</h3>
+                
+                <div class="mod-card">
+                    <div class="mod-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Техническая часть</h3>
                     <ul>
-                        <li>Мониторинг метрик и активности</li>
-                        <li>Выявление паттернов поведения</li>
-                        <li>Проактивная защита от рейдов</li>
-                        <li>Отчетность и рекомендации</li>
+                        <li>Настройка и управление Nightbot</li>
+                        <li>Создание команд и автоматических ответов</li>
+                        <li>Мониторинг активности в чате</li>
+                        <li>Решение технических проблем зрителей</li>
                     </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-users-cog"></i>
-                    </div>
-                    <h3>Управление командой</h3>
+                
+                <div class="mod-card">
+                    <div class="mod-icon"><i class="fas fa-users"></i></div>
+                    <h3>Работа с сообществом</h3>
                     <ul>
-                        <li>Организация работы модераторов</li>
-                        <li>Создание документации и гайдов</li>
-                        <li>Обучение новых модераторов</li>
-                        <li>Координация в кризисных ситуациях</li>
+                        <li>Администрирование Discord-сервера</li>
+                        <li>Ответы на вопросы новых зрителей</li>
+                        <li>Сбор идей и предложений</li>
+                        <li>Помощь в организации стримов</li>
                     </ul>
                 </div>
             </div>
-        </section>
-
-        <!-- Навыки -->
-        <section id="skills" class="section">
-            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Технический стек</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Программирование</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag c">C</span>
-                        <span class="skill-tag cpp">C++</span>
-                        <span class="skill-tag rust">Rust</span>
-                        <span class="skill-tag python">Python</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Инструменты модерации</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Nightbot</span>
-                        <span class="skill-tag">StreamElements</span>
-                        <span class="skill-tag">Twitch API</span>
-                        <span class="skill-tag">OBS Studio</span>
-                        <span class="skill-tag">Собственные скрипты</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-microchip"></i> DIY & Электроника</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag arduino">Arduino</span>
-                        <span class="skill-tag platformio">PlatformIO</span>
-                        <span class="skill-tag">ESP32/8266</span>
-                        <span class="skill-tag">Паяльные работы</span>
-                        <span class="skill-tag">3D-печать</span>
-                    </div>
-                </div>
+            
+            <div class="discord-section">
+                <h3><i class="fab fa-discord"></i> Наш Discord-сервер</h3>
+                <p>Присоединяйтесь к сообществу! Здесь можно общаться, получать анонсы стримов и быть ближе к каналу.</p>
+                <a href="https://discord.gg/KZwv3CJm" class="discord-btn">
+                    <i class="fab fa-discord"></i> Присоединиться к Discord
+                </a>
             </div>
         </section>
 
-        <!-- Проекты -->
-        <section id="projects" class="section dark">
-            <h2 class="section-title"><i class="fas fa-project-diagram"></i> Проекты</h2>
-            <div class="projects">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Система логирования чата</h3>
-                        <span class="project-status">Active</span>
-                    </div>
-                    <p>Кастомная система сбора и анализа логов Twitch чата с возможностью поиска и фильтрации по ключевым словам и пользователям.</p>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>Twitch API</span>
-                        <span>SQLite</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Автоматический модератор</h3>
-                        <span class="project-status">In Development</span>
-                    </div>
-                    <p>Бот с машинным обучением для определения токсичных сообщений и автоматического принятия решений на основе контекста.</p>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>TensorFlow</span>
-                        <span>TwitchIO</span>
+        <!-- Предложить идею -->
+        <section id="idea" class="section">
+            <h2 class="section-title"><i class="fas fa-lightbulb"></i> Предложить идею для стрима</h2>
+            <div class="idea-container">
+                <div class="idea-info">
+                    <h3>Ваши идеи важны!</h3>
+                    <p>У вас есть интересная идея для стрима? Хотите предложить формат, игру или коллаборацию? Пишите мне — я передам все предложения Егору и помогу с организацией.</p>
+                    
+                    <div class="idea-types">
+                        <h4>Какие идеи можно предложить:</h4>
+                        <ul>
+                            <li><i class="fas fa-gamepad"></i> Игры для стримов</li>
+                            <li><i class="fas fa-video"></i> Форматы и рубрики</li>
+                            <li><i class="fas fa-handshake"></i> Коллаборации с другими стримерами</li>
+                            <li><i class="fas fa-gift"></i> Конкурсы и ивенты</li>
+                            <li><i class="fas fa-ad"></i> Предложения по рекламе/сотрудничеству</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Stream Deck DIY</h3>
-                        <span class="project-status">Completed</span>
-                    </div>
-                    <p>Самодельный контроллер для стримеров на базе ESP32 с программируемыми кнопками и интеграцией с OBS.</p>
-                    <div class="project-tech">
-                        <span>C++</span>
-                        <span>ESP32</span>
-                        <span>PlatformIO</span>
-                    </div>
+                
+                <div class="idea-form">
+                    <h3>Быстрая форма</h3>
+                    <p>Заполните форму, и я свяжусь с вами для обсуждения деталей</p>
+                    
+                    <form id="ideaForm">
+                        <div class="form-group">
+                            <label for="idea-name">Ваше имя или ник *</label>
+                            <input type="text" id="idea-name" placeholder="Например: xorame" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="idea-contact">Как с вами связаться? *</label>
+                            <input type="text" id="idea-contact" placeholder="Telegram, Discord или email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="idea-type">Тип предложения *</label>
+                            <select id="idea-type" required>
+                                <option value="">Выберите тип</option>
+                                <option value="game">Игра для стрима</option>
+                                <option value="format">Формат/рубрика</option>
+                                <option value="collab">Коллаборация</option>
+                                <option value="event">Ивент/конкурс</option>
+                                <option value="ad">Реклама/сотрудничество</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="idea-text">Опишите вашу идею *</label>
+                            <textarea id="idea-text" rows="5" placeholder="Подробно опишите ваше предложение..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Отправить идею
+                        </button>
+                        
+                        <p class="form-note">Идея будет отправлена мне на почту. Я отвечу в течение 24 часов.</p>
+                    </form>
                 </div>
             </div>
         </section>
 
         <!-- Контакты -->
-        <section id="contact" class="section">
-            <h2 class="section-title"><i class="fas fa-envelope"></i> Контакты</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Для профессиональных запросов</h3>
-                    <p>Готов обсудить сотрудничество, сложные задачи модерации или технические проекты.</p>
-                    
-                    <div class="contact-links">
-                        <a href="https://discord.gg/xxorame" class="contact-link">
-                            <i class="fab fa-discord"></i>
-                            <div>
-                                <strong>Discord</strong>
-                                <span>xxorame (предпочтительно)</span>
-                            </div>
-                        </a>
-                        
-                        <a href="https://twitch.tv/Egor4kill" class="contact-link">
-                            <i class="fab fa-twitch"></i>
-                            <div>
-                                <strong>Twitch</strong>
-                                <span>Обращение как к модератору</span>
-                            </div>
-                        </a>
-                        
-                        <a href="mailto:xorame.x.x@gmail.com" class="contact-link">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <span>xorame.x.x@gmail.com</span>
-                            </div>
-                        </a>
+        <section id="contacts" class="section dark">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> Как со мной связаться</h2>
+            <div class="contacts-container">
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <h3>Почта (предпочтительно)</h3>
+                        <p>Для серьёзных предложений, идей и вопросов по каналу</p>
+                        <a href="mailto:xorame.x.x@gmail.com" class="contact-link">xorame.x.x@gmail.com</a>
                     </div>
                     
-                    <div class="principles">
-                        <h4>Принципы работы:</h4>
-                        <ul>
-                            <li><strong>Проактивность:</strong> Предотвращение проблем до их возникновения</li>
-                            <li><strong>Автоматизация:</strong> Исключение рутины там, где это возможно</li>
-                            <li><strong>Конфиденциальность:</strong> Полная дискретность в работе</li>
-                        </ul>
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fab fa-telegram"></i></div>
+                        <h3>Telegram</h3>
+                        <p>Для быстрых вопросов и общения</p>
+                        <a href="https://t.me/xoramegods" class="contact-link">@xoramegods</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fab fa-twitch"></i></div>
+                        <h3>Twitch</h3>
+                        <p>Пишите в чат на стримах Egor4kill</p>
+                        <a href="https://twitch.tv/xoramexl" class="contact-link">xoramexl</a>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <h3>Быстрое сообщение</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Имя *</label>
-                            <input type="text" id="name" required>
+                <div class="contact-info">
+                    <h3>Когда и по каким вопросам писать</h3>
+                    <div class="contact-guide">
+                        <div class="guide-item">
+                            <h4><i class="fas fa-lightbulb"></i> Идеи для стримов</h4>
+                            <p>Используйте форму выше или пишите на почту</p>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email или Discord *</label>
-                            <input type="text" id="email" required>
+                        <div class="guide-item">
+                            <h4><i class="fas fa-ad"></i> Реклама и сотрудничество</h4>
+                            <p>Только на почту с подробным описанием</p>
                         </div>
-                        <div class="form-group">
-                            <label for="subject">Тема *</label>
-                            <select id="subject" required>
-                                <option value="">Выберите тему</option>
-                                <option value="moderation">Модерация Twitch</option>
-                                <option value="technical">Технический вопрос</option>
-                                <option value="collaboration">Сотрудничество</option>
-                                <option value="other">Другое</option>
-                            </select>
+                        <div class="guide-item">
+                            <h4><i class="fas fa-question-circle"></i> Вопросы по каналу</h4>
+                            <p>Telegram или в Discord-сервере</p>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Сообщение *</label>
-                            <textarea id="message" rows="4" required></textarea>
+                        <div class="guide-item">
+                            <h4><i class="fas fa-robot"></i> Помощь с Nightbot</h4>
+                            <p>Telegram — помогу с настройкой</p>
                         </div>
-                        <button type="submit" class="submit-btn">Отправить сообщение</button>
-                        <p class="form-note">Сообщение будет отправлено на email. Отвечаю в течение 24 часов.</p>
-                    </form>
+                    </div>
+                    
+                    <div class="note-box">
+                        <p><strong>Важно:</strong> Я не принимаю решения по деньгам/оплате. По финансовым вопросам обращайтесь напрямую к Egor4kill.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -282,26 +293,37 @@
         <!-- Футер -->
         <footer class="footer">
             <div class="footer-content">
-                <div class="footer-logo">Xorame</div>
-                <p class="footer-tagline">Системная модерация и инженерные решения</p>
+                <div class="footer-logo">xorame</div>
+                <p class="footer-tagline">Главный модератор канала Egor4kill</p>
+                
                 <div class="footer-links">
-                    <a href="https://github.com/Xorame" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://twitch.tv/Egor4kill" title="Twitch">
+                    <a href="https://twitch.tv/egor4kill" title="Канал Egor4kill">
                         <i class="fab fa-twitch"></i>
                     </a>
-                    <a href="mailto:xorame.x.x@gmail.com" title="Email">
+                    <a href="https://twitch.tv/xoramexl" title="Мой Twitch">
+                        <i class="fab fa-twitch"></i>
+                    </a>
+                    <a href="https://t.me/xoramegods" title="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://discord.gg/KZwv3CJm" title="Discord сервер">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="mailto:xorame.x.x@gmail.com" title="Почта">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
-                <p class="footer-copyright">© 2024 Egor (Xorame). Все права защищены.</p>
-                <p class="footer-note">Этот сайт хостится на GitHub Pages. Последнее обновление: март 2024.</p>
+                
+                <div class="footer-info">
+                    <p>Это неофициальный сайт. Я помогаю каналу Egor4kill как модератор и редактор.</p>
+                    <p>Все решения по контенту и сотрудничеству принимает Egor4kill.</p>
+                </div>
+                
+                <p class="footer-copyright">© 2024 xorame. Сайт на GitHub Pages.</p>
             </div>
         </footer>
     </div>
 
-    <!-- Скрипты -->
     <script src="script.js"></script>
 </body>
 </html>
