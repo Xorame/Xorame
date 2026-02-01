@@ -1,3 +1,10 @@
+/* Reset и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --primary-color: #ff0023; /* RGB(255, 0, 35) */
     --primary-light: #ff3355;
@@ -15,11 +22,13 @@
     --font-sans: 'Inter', sans-serif;
 }
 
+/* Основные стили */
 body {
     font-family: var(--font-sans);
     background-color: var(--bg-dark);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
@@ -62,10 +71,26 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
+    position: relative;
 }
 
 .nav-links a:hover {
     color: var(--primary-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .idea-btn-nav {
@@ -74,6 +99,7 @@ body {
     border-radius: 8px;
     color: white !important;
     font-weight: 600 !important;
+    margin-left: 10px;
 }
 
 .idea-btn-nav:hover {
@@ -83,7 +109,11 @@ body {
     box-shadow: 0 5px 15px rgba(255, 0, 35, 0.3);
 }
 
-/* Герой */
+.idea-btn-nav::after {
+    display: none !important;
+}
+
+/* Герой секция */
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -114,12 +144,26 @@ body {
 
 .highlight {
     color: var(--primary-color);
+    position: relative;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: var(--primary-color);
+    opacity: 0.2;
+    z-index: -1;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
     color: var(--text-secondary);
     margin-bottom: 30px;
+    max-width: 500px;
 }
 
 .channel-link {
@@ -132,6 +176,7 @@ body {
     text-decoration: underline;
 }
 
+/* Статистика */
 .stats {
     display: flex;
     gap: 40px;
@@ -155,6 +200,7 @@ body {
     margin-top: 5px;
 }
 
+/* Кнопки */
 .hero-actions {
     display: flex;
     gap: 20px;
@@ -218,8 +264,8 @@ body {
     background-color: var(--bg-card);
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--border-color);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
 .terminal-header {
@@ -256,8 +302,9 @@ body {
 .terminal-body {
     padding: 30px;
     font-family: var(--font-mono);
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.8;
+    min-height: 300px;
 }
 
 .prompt {
@@ -292,14 +339,14 @@ body {
 
 /* Секции */
 .section {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .section.dark {
     background-color: var(--bg-card);
     border-radius: 20px;
+    margin: 60px 0;
     padding: 80px 40px;
-    margin: 40px -40px;
 }
 
 .section-title {
@@ -315,41 +362,55 @@ body {
 }
 
 /* Обо мне */
+.about-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.about-content p {
+    margin-bottom: 25px;
+    max-width: 800px;
+}
+
 .features {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 .feature {
     text-align: center;
-    padding: 30px 20px;
+    padding: 30px 25px;
     background-color: var(--bg-card-light);
     border-radius: 15px;
     border: 1px solid var(--border-color);
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
 }
 
 .feature:hover {
     transform: translateY(-10px);
     border-color: var(--primary-color);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 .feature-icon {
     font-size: 2.5rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    display: block;
 }
 
 .feature h3 {
     font-size: 1.3rem;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: var(--text-color);
 }
 
 .feature p {
     color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.6;
+    margin: 0;
 }
 
 /* Карточки */
@@ -365,12 +426,13 @@ body {
     padding: 30px;
     border-radius: 15px;
     border: 1px solid var(--border-color);
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .card h3 {
@@ -379,6 +441,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--text-color);
 }
 
 .card ul {
@@ -388,9 +451,10 @@ body {
 
 .card li {
     margin-bottom: 12px;
-    padding-left: 20px;
+    padding-left: 22px;
     position: relative;
     color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 .card li::before {
@@ -398,21 +462,24 @@ body {
     color: var(--primary-color);
     position: absolute;
     left: 0;
+    font-weight: bold;
 }
 
 /* Discord CTA */
 .discord-cta {
     text-align: center;
-    padding: 40px;
-    background-color: rgba(88, 101, 242, 0.1);
+    padding: 50px;
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(88, 101, 242, 0.05));
     border-radius: 15px;
-    border: 1px solid rgba(88, 101, 242, 0.3);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    margin-top: 40px;
 }
 
 .discord-cta p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
     color: var(--text-color);
+    font-weight: 500;
 }
 
 /* Навыки */
@@ -424,9 +491,15 @@ body {
 
 .skill-category {
     background-color: var(--bg-card-light);
-    padding: 25px;
+    padding: 30px;
     border-radius: 15px;
     border: 1px solid var(--border-color);
+    transition: transform 0.3s;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
 }
 
 .skill-category h3 {
@@ -435,6 +508,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--text-color);
 }
 
 .skill-tags {
@@ -450,30 +524,39 @@ body {
     border-radius: 20px;
     font-size: 0.9rem;
     border: 1px solid rgba(255, 0, 35, 0.3);
+    transition: all 0.3s;
+}
+
+.skill-tag:hover {
+    background-color: rgba(255, 0, 35, 0.2);
+    transform: scale(1.05);
 }
 
 /* Форма идей */
 .idea-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 60px;
     align-items: start;
 }
 
 .idea-info h3 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 20px;
+    color: var(--text-color);
 }
 
 .idea-info p {
     color: var(--text-secondary);
     margin-bottom: 30px;
     line-height: 1.7;
+    font-size: 1.05rem;
 }
 
 .idea-types h4 {
-    margin-bottom: 20px;
-    font-size: 1.2rem;
+    margin-bottom: 25px;
+    font-size: 1.3rem;
+    color: var(--text-color);
 }
 
 .types-grid {
@@ -485,38 +568,47 @@ body {
 .type {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px;
+    gap: 12px;
+    padding: 15px;
     background-color: rgba(255, 0, 35, 0.05);
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid rgba(255, 0, 35, 0.1);
+    transition: all 0.3s;
+}
+
+.type:hover {
+    background-color: rgba(255, 0, 35, 0.1);
+    border-color: rgba(255, 0, 35, 0.3);
+    transform: translateY(-3px);
 }
 
 .type i {
     color: var(--primary-color);
+    font-size: 1.1rem;
 }
 
 .type span {
     font-size: 0.95rem;
+    color: var(--text-color);
 }
 
 /* Форма */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 15px;
+    padding: 16px 20px;
     background-color: var(--bg-card-light);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 10px;
     color: var(--text-color);
     font-family: var(--font-sans);
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
 }
 
 .form-group input:focus,
@@ -524,172 +616,232 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 0, 35, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-secondary);
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 140px;
+    line-height: 1.6;
 }
 
 .form-note {
     text-align: center;
     color: var(--text-secondary);
     font-size: 0.9rem;
-    margin-top: 15px;
+    margin-top: 20px;
+    line-height: 1.5;
 }
 
 /* Контакты */
 .contacts {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 60px;
 }
 
 .contact-guide {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
 }
 
 .guide-item {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     align-items: flex-start;
 }
 
 .guide-icon {
-    font-size: 1.5rem;
-    min-width: 40px;
+    font-size: 1.8rem;
+    min-width: 50px;
+    text-align: center;
 }
 
 .guide-item h4 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: var(--text-color);
 }
 
 .guide-item p {
     color: var(--text-secondary);
     font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .contact-links {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 .contact-card {
     display: flex;
-    gap: 20px;
-    padding: 25px;
+    gap: 25px;
+    padding: 30px;
     background-color: var(--bg-card-light);
     border-radius: 15px;
     border: 1px solid var(--border-color);
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
 }
 
 .contact-card:hover {
-    transform: translateX(5px);
+    transform: translateX(10px);
     border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .contact-icon {
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--primary-color);
+    min-width: 50px;
 }
 
 .contact-details h3 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--text-color);
 }
 
 .contact-details p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 10px;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    line-height: 1.5;
 }
 
 .contact-link {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    transition: color 0.3s;
 }
 
 .contact-link:hover {
+    color: var(--accent-color);
     text-decoration: underline;
 }
 
 /* Футер */
 .footer {
     border-top: 1px solid var(--border-color);
-    padding: 60px 0 40px;
-    margin-top: 80px;
+    padding: 70px 0 50px;
+    margin-top: 100px;
 }
 
 .footer-content {
     text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .footer-logo {
     font-family: var(--font-mono);
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .footer-tagline {
     color: var(--text-secondary);
-    margin-bottom: 30px;
-    font-size: 1.1rem;
+    margin-bottom: 35px;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 .footer-social {
     display: flex;
     justify-content: center;
-    gap: 25px;
-    margin-bottom: 30px;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
 .footer-social a {
     color: var(--text-color);
-    font-size: 1.5rem;
-    transition: color 0.3s;
+    font-size: 1.8rem;
+    transition: all 0.3s;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--bg-card-light);
 }
 
 .footer-social a:hover {
     color: var(--primary-color);
+    transform: translateY(-5px);
+    background-color: rgba(255, 0, 35, 0.1);
 }
 
 .footer-note {
     color: var(--text-secondary);
-    margin-bottom: 10px;
-    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .footer-copyright {
     color: var(--text-secondary);
     font-size: 0.9rem;
     opacity: 0.7;
+    margin-top: 20px;
+}
+
+/* Анимации для появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Адаптивность */
+@media (max-width: 1100px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+}
+
 @media (max-width: 992px) {
     .hero {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 50px;
+        padding: 60px 0;
     }
     
     .hero-title {
         font-size: 2.5rem;
     }
     
+    .hero-subtitle {
+        margin: 0 auto 30px;
+    }
+    
     .stats {
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
     }
     
     .hero-actions {
@@ -706,7 +858,12 @@ body {
     .idea-container,
     .contacts {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 50px;
+    }
+    
+    .terminal-window {
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
@@ -715,6 +872,7 @@ body {
         flex-direction: column;
         gap: 20px;
         padding: 20px 0;
+        text-align: center;
     }
     
     .nav-links {
@@ -723,9 +881,26 @@ body {
         gap: 15px;
     }
     
+    .idea-btn-nav {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    .section {
+        padding: 70px 0;
+    }
+    
     .section.dark {
         padding: 60px 20px;
         margin: 40px -20px;
+        border-radius: 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
     
     .features,
@@ -735,12 +910,71 @@ body {
         grid-template-columns: 1fr;
     }
     
-    .section-title {
-        font-size: 2rem;
+    .stats {
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem;
     }
     
     .terminal-body {
         padding: 20px;
         font-size: 0.9rem;
+    }
+    
+    .footer-social {
+        gap: 20px;
+    }
+    
+    .footer-social a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .feature, .card, .skill-category {
+        padding: 25px 20px;
+    }
+    
+    .contact-card {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .contact-icon {
+        margin: 0 auto;
+    }
+    
+    .guide-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .guide-icon {
+        margin: 0 auto;
     }
 }
