@@ -1,16 +1,37 @@
-## Hi there 👋
+<div align="center">
+  
+# Привет! Я [Ваше Имя] 👋
 
-<!--
-**Xorame/Xorame** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Я разработчик, увлеченный [Ваша основная сфера интересов, например, веб-разработкой, анализом данных или дизайном].
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 🚀 Мой стек технологий
+
+Здесь вы можете добавить значки технологий, которые вы используете. Используйте ссылки на Shields.io или другие сервисы для красивых иконок.
+
+![HTML5](https://img.shields.io)
+![CSS3](https://img.shields.io)
+![JavaScript](https://img.shields.io)
+![Python](https://img.shields.io)
+![React](https://img.shields.io)
+
+---
+
+## 🌱 Чем я сейчас занимаюсь
+
+*   Изучаю **[Тема 1]**
+*   Работаю над проектом **[Название Проекта]**
+*   Ищу возможности для сотрудничества в области **[Область]**
+
+---
+
+## 📫 Связаться со мной
+
+Вы можете найти меня здесь:
+
+<a href="https://t.me" target="_blank"><img src="https://img.shields.io" alt="Telegram Badge""")/>></a>
+<a href="mailto:ваша.почта@example.com"><img src="https://img.shields.io" alt="Email Badge""")/>></a>
+<a href="https://linkedin.com" target="_blank"><img src="https://img.shields.io" alt="LinkedIn Badge""")/>></a>
+
+</div>
