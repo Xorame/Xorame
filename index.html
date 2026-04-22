@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Xorame --- Neofetch</title>
+    <title>Xorame — Neofetch</title>
     <style>
         * {
             margin: 0;
@@ -11,55 +11,86 @@
             box-sizing: border-box;
         }
 
+        /* фон с картинкой и размытием */
         body {
-            background: #000000;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-            padding: 20px;
+            background: #000;
+            font-family: 'Share Tech Mono', 'Fira Code', 'Cascadia Code', monospace;
+            position: relative;
         }
-
-        /* терминальный контейнер с фиолетовой рамкой */
-        .terminal {
-            max-width: 1300px;
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: #000000;
-            border: 2px solid #aa66ff;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(170, 102, 255, 0.3);
-            padding: 20px 24px 30px 24px;
-            transition: all 0.2s;
+            height: 100%;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(12px);
+            opacity: 0.4;
+            z-index: -2;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
         }
 
-        /* зелёный текст */
-        .terminal, .terminal * {
+        /* терминал на весь экран */
+        .terminal {
+            width: 100vw;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.82);
+            border-left: 4px solid #aa66ff;
+            border-right: 4px solid #aa66ff;
             color: #0f0;
+            padding: 2rem 3rem;
+            font-family: inherit;
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 700px) {
+            .terminal {
+                padding: 1.5rem;
+            }
         }
 
         /* командная строка */
         .command-line {
             display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.2rem;
-            margin-bottom: 24px;
+            align-items: baseline;
+            gap: 12px;
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
         .prompt {
             color: #0f0;
             font-weight: bold;
+            font-size: 1.6rem;
         }
         .command {
-            color: #0f0;
+            font-size: 1.6rem;
             letter-spacing: 1px;
         }
-        .cursor {
+        .cursor-blink {
             display: inline-block;
-            width: 10px;
+            width: 12px;
+            height: 1.6rem;
             background-color: #0f0;
-            margin-left: 2px;
+            vertical-align: middle;
+            margin-left: 5px;
             animation: blink 1s step-end infinite;
         }
         @keyframes blink {
@@ -67,39 +98,40 @@
             50% { opacity: 0; }
         }
 
-        /* ascii-art блоки */
+        /* ascii-арт блоки (гибкие) */
         .ascii-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 20px;
+            gap: 30px;
             margin: 20px 0 30px 0;
         }
         .ascii-block {
-            background: #000;
             font-family: monospace;
             white-space: pre;
             line-height: 1.2;
             font-size: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 12px;
             overflow-x: auto;
         }
         @media (max-width: 800px) {
             .ascii-block {
                 font-size: 8px;
-            }
-            .terminal {
-                padding: 12px;
+                padding: 5px;
             }
         }
-        /* блок вывода информации */
+
+        /* вывод информации */
         .output-lines {
             margin-top: 20px;
         }
         .info-line {
             font-family: monospace;
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 4px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
             word-break: break-word;
         }
         .contact-highlight {
@@ -107,10 +139,10 @@
             cursor: pointer;
             text-decoration: underline;
             text-underline-offset: 3px;
-            transition: opacity 0.2s;
+            transition: 0.1s;
         }
         .contact-highlight:hover {
-            opacity: 0.8;
+            text-shadow: 0 0 5px #0f0;
         }
         .glitch-text {
             display: inline-block;
@@ -123,40 +155,44 @@
             background: #1a1a1a;
             border: 1px solid #0f0;
             color: #0f0;
-            padding: 8px 18px;
-            border-radius: 30px;
+            padding: 8px 20px;
+            border-radius: 40px;
             font-family: monospace;
-            font-size: 0.9rem;
-            z-index: 999;
-            backdrop-filter: blur(4px);
+            font-size: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
             pointer-events: none;
             transition: opacity 0.2s;
         }
         hr {
-            border-color: #2a2a2a;
-            margin: 12px 0;
+            border-color: #2a6e2a;
+            margin: 15px 0;
         }
         .footer-cursor {
             display: inline-block;
-            width: 10px;
-            height: 18px;
+            width: 12px;
+            height: 1.4rem;
             background-color: #0f0;
             vertical-align: middle;
-            margin-left: 6px;
+            margin-left: 8px;
             animation: blink 1s step-end infinite;
+        }
+        /* футуристичный акцент */
+        .neon-text {
+            text-shadow: 0 0 2px #0f0;
         }
     </style>
 </head>
 <body>
 <div class="terminal">
-    <!-- строка с командой (анимированная) -->
+    <!-- строка с командой -->
     <div class="command-line">
         <span class="prompt">$</span>
         <span class="command" id="typedCommand"></span>
-        <span class="cursor" id="cmdCursor"></span>
+        <span class="cursor-blink" id="cmdCursor"></span>
     </div>
 
-    <!-- ascii-арт блоки (появятся после команды) -->
+    <!-- ascii-арт -->
     <div id="asciiContainer" style="display: none;">
         <div class="ascii-row">
             <div class="ascii-block" id="aphexAscii"></div>
@@ -164,11 +200,11 @@
         </div>
     </div>
 
-    <!-- контейнер для построчного вывода neofetch -->
+    <!-- neofetch вывод -->
     <div id="neofetchOutput" class="output-lines"></div>
 
     <!-- мигающий курсор в конце -->
-    <div style="margin-top: 20px;">
+    <div style="margin-top: 25px;">
         <span class="prompt">$</span> <span style="visibility: hidden;">_</span><span class="footer-cursor"></span>
     </div>
 </div>
@@ -201,7 +237,6 @@
                .MMMMM.        .MMMMM.                    
                        ‘MMMM’`;
 
-    // простой ascii ThinkPad (высота подогнана под aphex)
     const thinkpadArt = `+-----------------------------------+
 |             ThinkPad                |
 |   +-----------------------------+   |
@@ -214,21 +249,23 @@
 |   |     oooo        oooo          |   |
 |   +-----------------------------------+`;
 
-    // ---------- ДАННЫЕ ДЛЯ NEOFETCH (целевые строки) ----------
+    // ---------- РАСШИРЕННАЯ ИНФОРМАЦИЯ (больше строк) ----------
     const fields = [
         { label: "User:", value: "Xorame (Dmitriy)" },
-        { label: "OS:", value: "Human v1.0 (Krasnoyarsk)" },
-        { label: "Hobby:", value: "аудиофил, программирование C++, ремонт" },
+        { label: "OS:", value: "HumanOS 1.0 (Krasnoyarsk)" },
+        { label: "Shell:", value: "zsh 5.8" },
+        { label: "Uptime:", value: "17 years (no reboot)" },
+        { label: "Hobby:", value: "аудиофил, C++ программирование, ремонт электроники" },
         { label: "Music:", value: "Ryuichi Sakamoto, Tunng, The Books, Aphex Twin, Autechre, Rammstein, SOAD, Pink Floyd" },
         { label: "Games:", value: "Black Desert, Factorio, Portal 2, Terraria" },
+        { label: "Motto:", value: "если можно сломать — можно починить" },
         { label: "Status:", value: "junior+ ремонтник" },
         { label: "Editor:", value: "vim" },
-        { label: "Cat:", value: "Sonya" },
-        { label: "Personal life:", value: "[ERROR]" },
+        { label: "Cat:", value: "Sonya (🐱)" },
+        { label: "Personal life:", value: "[ERROR] segmentation fault" },
         { label: "Age:", value: "17 years" }
     ];
 
-    // контакты (отдельно, с возможностью копирования)
     const contacts = [
         { label: "Telegram:", value: "@xoramegods", copyValue: "@xoramegods" },
         { label: "Email:", value: "xorame.x.x@gmail.com", copyValue: "xorame.x.x@gmail.com" }
@@ -240,7 +277,6 @@
         return chars[Math.floor(Math.random() * chars.length)];
     }
 
-    // генерирует строку с ошибками (случайные символы) нужной длины
     function generateGlitchedString(target) {
         let glitched = "";
         for (let i = 0; i < target.length; i++) {
@@ -249,13 +285,13 @@
         return glitched;
     }
 
-    // анимация исправления: элемент span, конечный текст target, скорость исправления
-    function animateFix(element, target, callback) {
+    // быстрая анимация исправления (все символы меняются за ~300-500 мс)
+    function animateFixFast(element, target, callback) {
         const len = target.length;
         let current = generateGlitchedString(target);
         element.textContent = current;
         const indices = Array.from({ length: len }, (_, i) => i);
-        // перемешаем индексы для случайного порядка исправления
+        // перемешиваем
         for (let i = indices.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [indices[i], indices[j]] = [indices[j], indices[i]];
@@ -267,19 +303,17 @@
                 return;
             }
             const pos = indices[step];
-            // заменяем символ на правильный
             let arr = current.split('');
             arr[pos] = target[pos];
             current = arr.join('');
             element.textContent = current;
             step++;
-            // случайная задержка для реалистичности (30–80 мс)
-            setTimeout(fixStep, Math.random() * 50 + 30);
+            // очень быстрая коррекция: 15-25 мс на символ
+            setTimeout(fixStep, Math.random() * 20 + 10);
         }
         fixStep();
     }
 
-    // показать уведомление о копировании
     function showToast(msg) {
         let toast = document.querySelector('.toast');
         if (toast) toast.remove();
@@ -290,11 +324,11 @@
         setTimeout(() => {
             div.style.opacity = '0';
             setTimeout(() => div.remove(), 300);
-        }, 1800);
+        }, 1500);
     }
 
-    // добавить строку в neofetchOutput с анимацией
-    function addInfoLine(label, value, isContact = false, copyValue = null) {
+    // добавить строку с быстрым исправлением
+    function addInfoLineFast(label, value, isContact = false, copyValue = null) {
         return new Promise((resolve) => {
             const lineDiv = document.createElement('div');
             lineDiv.className = 'info-line';
@@ -308,19 +342,18 @@
             lineDiv.appendChild(valueSpan);
             document.getElementById('neofetchOutput').appendChild(lineDiv);
 
-            // анимируем исправление текста
-            animateFix(valueSpan, value, () => {
+            animateFixFast(valueSpan, value, () => {
                 if (isContact && copyValue) {
-                    // делаем текст жирным и кликабельным для копирования
                     valueSpan.style.fontWeight = 'bold';
                     valueSpan.style.cursor = 'pointer';
                     valueSpan.style.textDecoration = 'underline';
-                    valueSpan.title = 'Нажми, чтобы скопировать';
+                    valueSpan.title = 'Кликни — скопирую';
+                    valueSpan.classList.add('contact-highlight');
                     valueSpan.addEventListener('click', (e) => {
                         e.stopPropagation();
                         navigator.clipboard.writeText(copyValue).then(() => {
                             showToast(`Скопировано: ${copyValue}`);
-                        }).catch(() => showToast('Ошибка копирования'));
+                        }).catch(() => showToast('Не удалось скопировать'));
                     });
                 }
                 resolve();
@@ -328,8 +361,8 @@
         });
     }
 
-    // анимация печати команды "sudo neofetch"
-    function typeCommand() {
+    // быстрая печать команды (2 секунды)
+    function typeCommandFast() {
         return new Promise((resolve) => {
             const cmdElement = document.getElementById('typedCommand');
             const cmdText = "sudo neofetch";
@@ -338,56 +371,48 @@
                 if (i < cmdText.length) {
                     cmdElement.textContent += cmdText.charAt(i);
                     i++;
-                    setTimeout(typeNext, 70);
+                    setTimeout(typeNext, 45); // ~0.5 сек на всю команду
                 } else {
-                    // прячем курсор после команды
                     document.getElementById('cmdCursor').style.display = 'none';
-                    setTimeout(resolve, 300);
+                    setTimeout(resolve, 100);
                 }
             }
             typeNext();
         });
     }
 
-    // показать ascii-art
     function showAscii() {
         const container = document.getElementById('asciiContainer');
-        const aphexPre = document.getElementById('aphexAscii');
-        const thinkPre = document.getElementById('thinkpadAscii');
-        aphexPre.textContent = aphexArt;
-        thinkPre.textContent = thinkpadArt;
+        document.getElementById('aphexAscii').textContent = aphexArt;
+        document.getElementById('thinkpadAscii').textContent = thinkpadArt;
         container.style.display = 'block';
-        // маленькая задержка для плавности
-        return new Promise(r => setTimeout(r, 200));
+        return Promise.resolve();
     }
 
-    // главный запуск
+    // запуск
     async function runNeofetch() {
-        await typeCommand();
+        await typeCommandFast();
         await showAscii();
 
-        // выводим поля по очереди
+        // выводим все строки почти одновременно (но с микрозадержкой, чтобы успевали исправляться)
+        const promises = [];
         for (let i = 0; i < fields.length; i++) {
-            const f = fields[i];
-            await addInfoLine(f.label, f.value, false, null);
-            // небольшая пауза между строками
-            await new Promise(r => setTimeout(r, 120));
+            promises.push(addInfoLineFast(fields[i].label, fields[i].value, false, null));
+            await new Promise(r => setTimeout(r, 30)); // маленькая пауза для визуального порядка
         }
+        await Promise.all(promises);
 
         // разделитель
         const hr = document.createElement('hr');
         document.getElementById('neofetchOutput').appendChild(hr);
-        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => setTimeout(r, 50));
 
-        // выводим контакты с возможностью копирования
         for (let i = 0; i < contacts.length; i++) {
-            const c = contacts[i];
-            await addInfoLine(c.label, c.value, true, c.copyValue);
-            await new Promise(r => setTimeout(r, 100));
+            await addInfoLineFast(contacts[i].label, contacts[i].value, true, contacts[i].copyValue);
+            await new Promise(r => setTimeout(r, 30));
         }
     }
 
-    // запускаем всё после загрузки страницы
     window.addEventListener('DOMContentLoaded', () => {
         runNeofetch().catch(console.error);
     });
