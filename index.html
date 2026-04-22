@@ -2,373 +2,395 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xorame - Главный модератор Egor4kill</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Xorame --- Neofetch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            padding: 20px;
+        }
+
+        /* терминальный контейнер с фиолетовой рамкой */
+        .terminal {
+            max-width: 1300px;
+            width: 100%;
+            background: #000000;
+            border: 2px solid #aa66ff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(170, 102, 255, 0.3);
+            padding: 20px 24px 30px 24px;
+            transition: all 0.2s;
+        }
+
+        /* зелёный текст */
+        .terminal, .terminal * {
+            color: #0f0;
+        }
+
+        /* командная строка */
+        .command-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .prompt {
+            color: #0f0;
+            font-weight: bold;
+        }
+        .command {
+            color: #0f0;
+            letter-spacing: 1px;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: #0f0;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ascii-art блоки */
+        .ascii-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 20px 0 30px 0;
+        }
+        .ascii-block {
+            background: #000;
+            font-family: monospace;
+            white-space: pre;
+            line-height: 1.2;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        @media (max-width: 800px) {
+            .ascii-block {
+                font-size: 8px;
+            }
+            .terminal {
+                padding: 12px;
+            }
+        }
+        /* блок вывода информации */
+        .output-lines {
+            margin-top: 20px;
+        }
+        .info-line {
+            font-family: monospace;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+        .contact-highlight {
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s;
+        }
+        .contact-highlight:hover {
+            opacity: 0.8;
+        }
+        .glitch-text {
+            display: inline-block;
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            border: 1px solid #0f0;
+            color: #0f0;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            z-index: 999;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        hr {
+            border-color: #2a2a2a;
+            margin: 12px 0;
+        }
+        .footer-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background-color: #0f0;
+            vertical-align: middle;
+            margin-left: 6px;
+            animation: blink 1s step-end infinite;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Навигация -->
-        <nav class="navbar">
-            <div class="logo">Xorame</div>
-            <ul class="nav-links">
-                <li><a href="#about">Обо мне</a></li>
-                <li><a href="#moderation">Модерация</a></li>
-                <li><a href="#skills">Навыки</a></li>
-                <li><a href="#idea" class="idea-btn-nav">💡 Идея для стрима</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
-        </nav>
-
-        <!-- Герой-секция -->
-        <header class="hero">
-            <div class="hero-content">
-                <div class="badge">Главный модератор</div>
-                <h1 class="hero-title">Привет, я <span class="highlight">xorame</span></h1>
-                <p class="hero-subtitle">Редактор и модератор канала <a href="https://twitch.tv/egor4kill" class="channel-link">Egor4kill</a></p>
-                
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-number">1+</div>
-                        <div class="stat-label">год опыта</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">часов модерации</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">принятых идей</div>
-                    </div>
-                </div>
-
-                <div class="hero-actions">
-                    <a href="https://twitch.tv/egor4kill" class="btn primary">
-                        <i class="fab fa-twitch"></i> Канал Egor4kill
-                    </a>
-                    <a href="#idea" class="btn secondary">
-                        <i class="fas fa-lightbulb"></i> Предложить идею
-                    </a>
-                </div>
-            </div>
-            
-            <div class="hero-image">
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                            <span class="close"></span>
-                            <span class="minimize"></span>
-                            <span class="maximize"></span>
-                        </div>
-                        <span class="terminal-title">moderator@egor4kill:~</span>
-                    </div>
-                    <div class="terminal-body">
-                        <p><span class="prompt">$</span> whoami</p>
-                        <p class="output"><span class="accent">Xorame</span> — главный модератор Egor4kill</p>
-                        <p><span class="prompt">$</span> fastfetch</p>
-                        <p class="output">═══════════════════════════════════════</p>
-                        <p class="output"><span class="label">Role:</span> Editor (Редактор)</p>
-                        <p class="output"><span class="label">Experience:</span> 1+ year | 500+ hours</p>
-                        <p class="output"><span class="label">Tools:</span> Nightbot, Twitch Mod Tools</p>
-                        <p class="output"><span class="label">Discord:</span> Administrator</p>
-                        <p class="output"><span class="label">Telegram:</span> @xoramegods</p>
-                        <p class="output">═══════════════════════════════════════</p>
-                        <p><span class="prompt">$</span> <span class="cursor">█</span></p>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Обо мне -->
-        <section id="about" class="section">
-            <h2 class="section-title"><i class="fas fa-user-circle"></i> Обо мне</h2>
-            <div class="about-content">
-                <p>Я <strong>xorame</strong> (XORAME) — главный модератор и редактор на канале <a href="https://twitch.tv/egor4kill">Egor4kill</a>. Моя основная задача — поддержание порядка в чате, помощь зрителям и создание комфортной атмосферы на стримах.</p>
-                
-                <p>Как редактор, я имею расширенные права на Twitch и активно участвую в развитии канала. Также администрирую Discord-сервер сообщества.</p>
-                
-                <div class="features">
-                    <div class="feature">
-                        <div class="feature-icon">👑</div>
-                        <h3>Редактор Twitch</h3>
-                        <p>Роль выше модератора с дополнительными возможностями</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">🤝</div>
-                        <h3>Связь с сообществом</h3>
-                        <p>Принимаю идеи, предложения и вопросы от зрителей</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">⚙️</div>
-                        <h3>Техническая поддержка</h3>
-                        <p>Помощь с Nightbot и техническими вопросами</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Модерация -->
-        <section id="moderation" class="section dark">
-            <h2 class="section-title"><i class="fas fa-shield-alt"></i> Моя работа на канале</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3><i class="fas fa-comments"></i> Модерация чата</h3>
-                    <ul>
-                        <li>Слежу за соблюдением правил сообщества</li>
-                        <li>Пресекаю конфликты и нарушения</li>
-                        <li>Защищаю от спама и рейдов</li>
-                        <li>Помогаю новым зрителям</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3><i class="fas fa-cogs"></i> Администрирование</h3>
-                    <ul>
-                        <li>Управление Discord-сервером</li>
-                        <li>Настройка и контроль Nightbot</li>
-                        <li>Организация ивентов и активностей</li>
-                        <li>Координация команды модераторов</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3><i class="fas fa-broadcast-tower"></i> Развитие канала</h3>
-                    <ul>
-                        <li>Сбор и анализ идей от сообщества</li>
-                        <li>Помощь в организации стримов</li>
-                        <li>Взаимодействие с рекламодателями</li>
-                        <li>Улучшение взаимодействия с аудиторией</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="discord-cta">
-                <p>Присоединяйтесь к нашему Discord-сообществу!</p>
-                <a href="https://discord.gg/KZwv3CJm" class="btn discord">
-                    <i class="fab fa-discord"></i> Discord сервер
-                </a>
-            </div>
-        </section>
-
-        <!-- Навыки -->
-        <section id="skills" class="section">
-            <h2 class="section-title"><i class="fas fa-code"></i> Навыки и инструменты</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Модерация</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Twitch Mod Tools</span>
-                        <span class="skill-tag">Nightbot</span>
-                        <span class="skill-tag">Discord Admin</span>
-                        <span class="skill-tag">Командная работа</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-users"></i> Коммуникация</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Работа с сообществом</span>
-                        <span class="skill-tag">Решение конфликтов</span>
-                        <span class="skill-tag">Приём feedback</span>
-                        <span class="skill-tag">Поддержка зрителей</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-lightbulb"></i> Развитие</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Анализ идей</span>
-                        <span class="skill-tag">Организация ивентов</span>
-                        <span class="skill-tag">Улучшение контента</span>
-                        <span class="skill-tag">Работа с предложениями</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Предложить идею -->
-        <section id="idea" class="section dark">
-            <h2 class="section-title"><i class="fas fa-lightbulb"></i> Предложить идею для стрима</h2>
-            <div class="idea-container">
-                <div class="idea-info">
-                    <h3>Ваши идеи важны для нас!</h3>
-                    <p>Хотите предложить игру для стрима, интересный формат, коллаборацию или мероприятие? Пишите мне — я передам все конструктивные предложения и помогу с реализацией.</p>
-                    
-                    <div class="idea-types">
-                        <h4>Что можно предложить:</h4>
-                        <div class="types-grid">
-                            <div class="type">
-                                <i class="fas fa-gamepad"></i>
-                                <span>Игры и геймплей</span>
-                            </div>
-                            <div class="type">
-                                <i class="fas fa-video"></i>
-                                <span>Форматы стримов</span>
-                            </div>
-                            <div class="type">
-                                <i class="fas fa-handshake"></i>
-                                <span>Коллаборации</span>
-                            </div>
-                            <div class="type">
-                                <i class="fas fa-gift"></i>
-                                <span>Конкурсы и ивенты</span>
-                            </div>
-                            <div class="type">
-                                <i class="fas fa-ad"></i>
-                                <span>Реклама/партнёрство</span>
-                            </div>
-                            <div class="type">
-                                <i class="fas fa-star"></i>
-                                <span>Улучшения канала</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="idea-form">
-                    <form id="ideaForm">
-                        <div class="form-group">
-                            <input type="text" id="ideaName" placeholder="Ваше имя или никнейм" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="text" id="ideaContact" placeholder="Telegram, Discord или email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <select id="ideaType" required>
-                                <option value="">Тип предложения</option>
-                                <option value="game">Игра</option>
-                                <option value="format">Формат стрима</option>
-                                <option value="collab">Коллаборация</option>
-                                <option value="event">Ивент/конкурс</option>
-                                <option value="ad">Реклама/сотрудничество</option>
-                                <option value="other">Другое</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea id="ideaText" placeholder="Опишите вашу идею подробно..." rows="4" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn primary full-width">
-                            <i class="fas fa-paper-plane"></i> Отправить идею
-                        </button>
-                        
-                        <p class="form-note">Идея будет отправлена на мою почту. Отвечу в течение 24 часов.</p>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Контакты -->
-        <section id="contact" class="section">
-            <h2 class="section-title"><i class="fas fa-envelope"></i> Контакты</h2>
-            <div class="contacts">
-                <div class="contact-info">
-                    <h3>По каким вопросам обращаться</h3>
-                    
-                    <div class="contact-guide">
-                        <div class="guide-item">
-                            <div class="guide-icon">💡</div>
-                            <div>
-                                <h4>Идеи для стримов</h4>
-                                <p>Используйте форму выше или пишите на почту</p>
-                            </div>
-                        </div>
-                        
-                        <div class="guide-item">
-                            <div class="guide-icon">🤝</div>
-                            <div>
-                                <h4>Сотрудничество</h4>
-                                <p>Только на почту с подробным описанием</p>
-                            </div>
-                        </div>
-                        
-                        <div class="guide-item">
-                            <div class="guide-icon">❓</div>
-                            <div>
-                                <h4>Вопросы по каналу</h4>
-                                <p>Telegram или в чате на стриме</p>
-                            </div>
-                        </div>
-                        
-                        <div class="guide-item">
-                            <div class="guide-icon">⚙️</div>
-                            <div>
-                                <h4>Техническая помощь</h4>
-                                <p>Помощь с Nightbot — в Telegram</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-links">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Почта (предпочтительно)</h3>
-                            <p>Для серьёзных предложений и идей</p>
-                            <a href="mailto:xorame.x.x@gmail.com" class="contact-link">xorame.x.x@gmail.com</a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fab fa-telegram"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Telegram</h3>
-                            <p>Для быстрых вопросов и общения</p>
-                            <a href="https://t.me/xoramegods" class="contact-link">@xoramegods</a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fab fa-twitch"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Twitch</h3>
-                            <p>Пишите в чат на стримах</p>
-                            <a href="https://twitch.tv/xoramexl" class="contact-link">xoramexl</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Футер -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logo">Xorame</div>
-                <p class="footer-tagline">Главный модератор канала Egor4kill</p>
-                
-                <div class="footer-social">
-                    <a href="https://twitch.tv/egor4kill" title="Канал Egor4kill">
-                        <i class="fab fa-twitch"></i>
-                    </a>
-                    <a href="https://twitch.tv/xoramexl" title="Мой Twitch">
-                        <i class="fab fa-twitch"></i>
-                    </a>
-                    <a href="https://t.me/xoramegods" title="Telegram">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                    <a href="https://discord.gg/KZwv3CJm" title="Discord">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </div>
-                
-                <p class="footer-note">Это официальный сайт модератора канала Egor4kill</p>
-                <p class="footer-copyright">© 2026 Xorame | Сайт на GitHub Pages</p>
-            </div>
-        </footer>
+<div class="terminal">
+    <!-- строка с командой (анимированная) -->
+    <div class="command-line">
+        <span class="prompt">$</span>
+        <span class="command" id="typedCommand"></span>
+        <span class="cursor" id="cmdCursor"></span>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ascii-арт блоки (появятся после команды) -->
+    <div id="asciiContainer" style="display: none;">
+        <div class="ascii-row">
+            <div class="ascii-block" id="aphexAscii"></div>
+            <div class="ascii-block" id="thinkpadAscii"></div>
+        </div>
+    </div>
+
+    <!-- контейнер для построчного вывода neofetch -->
+    <div id="neofetchOutput" class="output-lines"></div>
+
+    <!-- мигающий курсор в конце -->
+    <div style="margin-top: 20px;">
+        <span class="prompt">$</span> <span style="visibility: hidden;">_</span><span class="footer-cursor"></span>
+    </div>
+</div>
+
+<script>
+    // ---------- ASCII ART ----------
+    const aphexArt = `                                     oMMMMo                           
+               ‘MMMMM.         MMMMM’                   
+            WMM,                    ,MMM                
+         dMM                            MMx              
+       kMx                                xMk            
+     ,M0                                    0M;          
+    xM,   KMMMMMMMMMMMMMMMMMMMMMM:           ‘Mk         
+   kM.   lMMMMMMMMMMMMMMMMMMMMMMMMO           .MO        
+  oM’     0MMMMMMMMMl   MMMMMMMMMMMc           .Mo       
+ .Md                  .MMMMMMMMMMMMM.           oM.      
+ dM                  ,MMMMX dMMMMMMMW            Mx       
+ XK                 cMMMMM    MMMMMMMk           KX       
+ WO                YOU    KMMMMMM:          OW       
+ XK               GREAT      oMMMMMM.         KX       
+ dM.             TWAT           ,MMMMMX         Mx       
+ .Md            YOU               MMMMMx       oM.       
+  oM’          0MM;                 0MMMM;     .Mo       
+   kM.                               lMMMM    .MO        
+    xM,                               ‘MMMc  ,Mk         
+     ,MK                                    0M,          
+       xMk                                xMk            
+         dMM                            MMd              
+            WMM;                    ;MMW                 
+               .MMMMM.        .MMMMM.                    
+                       ‘MMMM’`;
+
+    // простой ascii ThinkPad (высота подогнана под aphex)
+    const thinkpadArt = `+-----------------------------------+
+|             ThinkPad                |
+|   +-----------------------------+   |
+|   |                             |   |
+|   |       [    экран    ]        |   |
+|   |                             |   |
+|   +-----------------------------+   |
+|   |   [  клавиатура ]   [трекпоинт]|
+|   +-----------------------------+   |
+|   |     oooo        oooo          |   |
+|   +-----------------------------------+`;
+
+    // ---------- ДАННЫЕ ДЛЯ NEOFETCH (целевые строки) ----------
+    const fields = [
+        { label: "User:", value: "Xorame (Dmitriy)" },
+        { label: "OS:", value: "Human v1.0 (Krasnoyarsk)" },
+        { label: "Hobby:", value: "аудиофил, программирование C++, ремонт" },
+        { label: "Music:", value: "Ryuichi Sakamoto, Tunng, The Books, Aphex Twin, Autechre, Rammstein, SOAD, Pink Floyd" },
+        { label: "Games:", value: "Black Desert, Factorio, Portal 2, Terraria" },
+        { label: "Status:", value: "junior+ ремонтник" },
+        { label: "Editor:", value: "vim" },
+        { label: "Cat:", value: "Sonya" },
+        { label: "Personal life:", value: "[ERROR]" },
+        { label: "Age:", value: "17 years" }
+    ];
+
+    // контакты (отдельно, с возможностью копирования)
+    const contacts = [
+        { label: "Telegram:", value: "@xoramegods", copyValue: "@xoramegods" },
+        { label: "Email:", value: "xorame.x.x@gmail.com", copyValue: "xorame.x.x@gmail.com" }
+    ];
+
+    // ---------- УТИЛИТЫ ----------
+    function randomChar() {
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}[]|:;<>?,./~`";
+        return chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    // генерирует строку с ошибками (случайные символы) нужной длины
+    function generateGlitchedString(target) {
+        let glitched = "";
+        for (let i = 0; i < target.length; i++) {
+            glitched += randomChar();
+        }
+        return glitched;
+    }
+
+    // анимация исправления: элемент span, конечный текст target, скорость исправления
+    function animateFix(element, target, callback) {
+        const len = target.length;
+        let current = generateGlitchedString(target);
+        element.textContent = current;
+        const indices = Array.from({ length: len }, (_, i) => i);
+        // перемешаем индексы для случайного порядка исправления
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        let step = 0;
+        function fixStep() {
+            if (step >= indices.length) {
+                if (callback) callback();
+                return;
+            }
+            const pos = indices[step];
+            // заменяем символ на правильный
+            let arr = current.split('');
+            arr[pos] = target[pos];
+            current = arr.join('');
+            element.textContent = current;
+            step++;
+            // случайная задержка для реалистичности (30–80 мс)
+            setTimeout(fixStep, Math.random() * 50 + 30);
+        }
+        fixStep();
+    }
+
+    // показать уведомление о копировании
+    function showToast(msg) {
+        let toast = document.querySelector('.toast');
+        if (toast) toast.remove();
+        const div = document.createElement('div');
+        div.className = 'toast';
+        div.textContent = msg;
+        document.body.appendChild(div);
+        setTimeout(() => {
+            div.style.opacity = '0';
+            setTimeout(() => div.remove(), 300);
+        }, 1800);
+    }
+
+    // добавить строку в neofetchOutput с анимацией
+    function addInfoLine(label, value, isContact = false, copyValue = null) {
+        return new Promise((resolve) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'info-line';
+            const labelSpan = document.createElement('span');
+            labelSpan.textContent = label + " ";
+            labelSpan.style.fontWeight = 'bold';
+            lineDiv.appendChild(labelSpan);
+
+            const valueSpan = document.createElement('span');
+            valueSpan.className = 'glitch-text';
+            lineDiv.appendChild(valueSpan);
+            document.getElementById('neofetchOutput').appendChild(lineDiv);
+
+            // анимируем исправление текста
+            animateFix(valueSpan, value, () => {
+                if (isContact && copyValue) {
+                    // делаем текст жирным и кликабельным для копирования
+                    valueSpan.style.fontWeight = 'bold';
+                    valueSpan.style.cursor = 'pointer';
+                    valueSpan.style.textDecoration = 'underline';
+                    valueSpan.title = 'Нажми, чтобы скопировать';
+                    valueSpan.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        navigator.clipboard.writeText(copyValue).then(() => {
+                            showToast(`Скопировано: ${copyValue}`);
+                        }).catch(() => showToast('Ошибка копирования'));
+                    });
+                }
+                resolve();
+            });
+        });
+    }
+
+    // анимация печати команды "sudo neofetch"
+    function typeCommand() {
+        return new Promise((resolve) => {
+            const cmdElement = document.getElementById('typedCommand');
+            const cmdText = "sudo neofetch";
+            let i = 0;
+            function typeNext() {
+                if (i < cmdText.length) {
+                    cmdElement.textContent += cmdText.charAt(i);
+                    i++;
+                    setTimeout(typeNext, 70);
+                } else {
+                    // прячем курсор после команды
+                    document.getElementById('cmdCursor').style.display = 'none';
+                    setTimeout(resolve, 300);
+                }
+            }
+            typeNext();
+        });
+    }
+
+    // показать ascii-art
+    function showAscii() {
+        const container = document.getElementById('asciiContainer');
+        const aphexPre = document.getElementById('aphexAscii');
+        const thinkPre = document.getElementById('thinkpadAscii');
+        aphexPre.textContent = aphexArt;
+        thinkPre.textContent = thinkpadArt;
+        container.style.display = 'block';
+        // маленькая задержка для плавности
+        return new Promise(r => setTimeout(r, 200));
+    }
+
+    // главный запуск
+    async function runNeofetch() {
+        await typeCommand();
+        await showAscii();
+
+        // выводим поля по очереди
+        for (let i = 0; i < fields.length; i++) {
+            const f = fields[i];
+            await addInfoLine(f.label, f.value, false, null);
+            // небольшая пауза между строками
+            await new Promise(r => setTimeout(r, 120));
+        }
+
+        // разделитель
+        const hr = document.createElement('hr');
+        document.getElementById('neofetchOutput').appendChild(hr);
+        await new Promise(r => setTimeout(r, 100));
+
+        // выводим контакты с возможностью копирования
+        for (let i = 0; i < contacts.length; i++) {
+            const c = contacts[i];
+            await addInfoLine(c.label, c.value, true, c.copyValue);
+            await new Promise(r => setTimeout(r, 100));
+        }
+    }
+
+    // запускаем всё после загрузки страницы
+    window.addEventListener('DOMContentLoaded', () => {
+        runNeofetch().catch(console.error);
+    });
+</script>
 </body>
 </html>
